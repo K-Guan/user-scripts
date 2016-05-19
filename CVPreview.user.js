@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         cv-pls preview
+// @name         CVPreview
 // @namespace    https://stackoverflow.com/users/5299236/kevin-guan
 // @author       Kevin
 // @description  Preview every `cv-pls` requests in SOCVR; the code is based on stackapps.com/q/6737
