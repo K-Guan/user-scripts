@@ -4,7 +4,7 @@
 // @author       Kevin
 // @description  Preview every `cv-pls` requests in SOCVR; the code is based on stackapps.com/q/6737
 // @include      /https?:\/\/chat\.stackoverflow\.com\/rooms\/41570.*/
-// @version      2.6
+// @version      2.7
 // @grant        GM_getValue
 // @grant        GM_setValue
 // ==/UserScript==
@@ -74,7 +74,7 @@ function onMessage(user, msg) {
 
 function loadPreview(id) {
     // var url = "https://api.stackexchange.com/2.2/questions/" + id + "?site=stackoverflow&filter=!)Q2B(_XXTIbbJYp7Ko8L)eSx";
-    var url = "https://api.stackexchange.com/2.2/questions/" + id + "?site=stackoverflow&filter=!)Q2B(_XXTIbbJYp7Ko8L)eSx&key=4JvEOlgm0aIgrcmo2hsbng((";
+    var url = "https://api.stackexchange.com/2.2/questions/" + id + "?site=stackoverflow&filter=!FcbCBt3wlr0.PI)D-9ZSV)VeTt&key=4JvEOlgm0aIgrcmo2hsbng((";
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.onload = showPreview;
@@ -84,7 +84,7 @@ function loadPreview(id) {
 
 function showPreview(response) {
     var resp = JSON.parse(this.response);
-    if(resp.items.length === 0) {
+    if(resp.items.length === 0 || typeof(resp.items[0].closed_details) !== 'undefined') {
         var elem = document.getElementById("cvpls" + this.id);
         elem.style.display = "none";
         elem.parentNode.style.opacity = 0.5;
@@ -136,3 +136,5 @@ window.addEventListener('load', function() {
             }
         }
 }, false);
+
+
